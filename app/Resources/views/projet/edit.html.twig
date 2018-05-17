@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <h1>Projet edit</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input class="btn btn-info" type="submit" value="Edit" />
+    {{ form_end(edit_form) }}
+
+    <div class="">
+            <a href="{{ path('projet_index') }}" ><button class="btn btn-default">Back to the list</button></a>
+
+            {{ form_start(delete_form) }}
+                <input class="btn btn-danger" type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+    </div>
+</div>
+{% endblock %}

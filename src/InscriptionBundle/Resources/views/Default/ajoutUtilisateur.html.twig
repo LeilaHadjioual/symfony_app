@@ -1,14 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{%  block body %}
-        <div class="container">
-            <div>
+{% block body %}
+    <div class="container">
 
-            
-        {{ form_start(form) }}
+        {{ form_start(form, {'attr': {'class': 'col-sm-4 '}}) }}
         {{ form_widget(form) }}
-            <input class ="" type="submit" value="s'inscrire"/>
+        <input class="btn btn-primary " type="submit" value="s'inscrire"/>
         {{ form_end(form) }}
-        </div>
+
+    </div>
 {% endblock %}
 

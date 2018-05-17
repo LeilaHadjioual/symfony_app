@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Projet creation</h1>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input class="btn btn-primary" type="submit" value="Create"/>
+        {{ form_end(form) }}
+
+        <button type="button" class="btn btn-info"><a href="{{ path('projet_index') }}">Back to the list</a>
+        </button>
+
+    </div>
+{% endblock %}

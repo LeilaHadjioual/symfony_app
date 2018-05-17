@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Projets list</h1>
+        {% for projet in projets %}
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse">
+                                Projet : {{ projet.nom }}</a> </br>
+                                Utilisateur : {{ projet.utilisateur.nom }}</br>
+                                Auteur :{{ projet.nomAuteur }}
+                        </h4>
+                    </div>
+                    <div id="collapse" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <p>{% if projet.date %}{{ projet.date|date('Y-m-d H:i:s') }}{% endif %}</p>
+                            {{ projet.description }}</div>
+                        <a href="{{ path('projet_show', { 'id': projet.id }) }}">show</a>
+                        <a href="{{ path('projet_edit', { 'id': projet.id }) }}">edit</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <button class="btn btn-info"><a href="{{ path('projet_new') }}">Create a new projet</a></button>
+
+        {#<table class="table table-striped">#}
+        {#<thead>#}
+        {#<tr>#}
+        {#<th>Id</th>#}
+        {#<th>Nom</th>#}
+        {#<th>Description</th>#}
+        {#<th>Date</th>#}
+        {#<th>Nomauteur</th>#}
+        {#<th>Actions</th>#}
+        {#</tr>#}
+        {#</thead>#}
+        {#<tbody>#}
+        {#{% for projet in projets %}#}
+        {#<tr>#}
+        {#<td><a href="{{ path('projet_show', { 'id': projet.id }) }}">{{ projet.id }}</a></td>#}
+        {#<td>{{ projet.nom }}</td>#}
+        {#<td>{{ projet.description }}</td>#}
+        {#<td>{% if projet.date %}{{ projet.date|date('Y-m-d H:i:s') }}{% endif %}</td>#}
+        {#<td>{{ projet.nomAuteur }}</td>#}
+        {#<td>#}
+        {#<ul>#}
+        {#<li>#}
+        {#<a href="{{ path('projet_show', { 'id': projet.id }) }}">show</a>#}
+        {#</li>#}
+        {#<li>#}
+        {#<a href="{{ path('projet_edit', { 'id': projet.id }) }}">edit</a>#}
+        {#</li>#}
+        {#</ul>#}
+        {#</td>#}
+        {#</tr>#}
+        {#{% endfor %}#}
+        {#</tbody>#}
+        {#</table>#}
+
+
+    </div>
+
+
+
+{% endblock %}
