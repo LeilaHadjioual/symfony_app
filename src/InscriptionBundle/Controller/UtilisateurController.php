@@ -10,20 +10,19 @@ namespace InscriptionBundle\Controller;
 
 use InscriptionBundle\Entity\Utilisateur;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-/**
- * inscription controller.
- *
- * @Route("inscription")
- */
+
 
 class UtilisateurController extends Controller
 {
     /**
-     * @Route("/new")
+     * creates a new user
      *
+     * @Route("/inscription/new", name="user_new")
+     * @Method({"GET", "POST"})
      */
     public function ajoutAction(Request $request)
     {
@@ -36,6 +35,11 @@ class UtilisateurController extends Controller
             $em->flush($utilisateur);
 
         }
+        if ($request->isMethod('POST')) {
+            $request->getSession()->getFlashBag()->add("success", "inscription validée");
+            return $this->redirect($this->generateUrl('user_new', array('id' => $utilisateur->getId())));
+
+        }
         return $this->render('@Inscription/Default/ajoutUtilisateur.html.twig', array(
            'utilisateur' => $utilisateur,
             'form' => $form->CreateView(),
@@ -43,8 +47,9 @@ class UtilisateurController extends Controller
     }
 
     /**
-     * @Route("/liste")
-     *
+     * lists all users
+     * @Route("/liste", name="user_list")
+     * @Method("GET")
      */
     public function listUser(){
         $em = $this->getDoctrine()->getManager();

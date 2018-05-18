@@ -2,12 +2,20 @@
 
 {% block body %}
     <div class="container">
-
-        {{ form_start(form, {'attr': {'class': 'col-sm-4 '}}) }}
-        {{ form_widget(form) }}
-        <input class="btn btn-primary " type="submit" value="s'inscrire"/>
-        {{ form_end(form) }}
-
+        <h1>Formulaire d'inscription</h1>
+        <div>
+            {% for flash_message in app.session.flashBag.get('success') %}
+                <div class="alert alert-success">
+                    {{ flash_message }}
+                </div>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form_start(form, {'attr': {'class': 'col-sm-4 '}}) }}
+            {{ form_widget(form) }}
+            <input class="btn btn-primary " type="submit" value="s'inscrire"/>
+            {{ form_end(form) }}
+        </div>
     </div>
 {% endblock %}
 
