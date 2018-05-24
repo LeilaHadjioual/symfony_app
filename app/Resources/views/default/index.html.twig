@@ -4,6 +4,10 @@
     <div id="container">
         <div id="welcome">
             <div class="jumbotron text-center">
+                {% if user %}
+                    <h1>Bienvenue {{ app.user.username }}</h1>
+                {% endif %}
+
                 <h1>Dons en Ligne</h1>
                 <p>présentez votre projet, soutenez des projets grâce à vos dons</p>
                 <form class="form-inline">

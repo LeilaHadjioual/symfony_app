@@ -29,14 +29,18 @@
             </tbody>
         </table>
         <div class="btn-group-vertical">
-            <a href="{{ path('projet_index') }}"><button type="submit" class="btn btn-info">Back to the list</button></a>
-
-          <a href="{{ path('projet_edit', { 'id': projet.id }) }}"><button class="btn btn-info">Edit</button></a>
+            <a href="{{ path('projet_index') }}">
+                <button type="submit" class="btn btn-info">Back to the list</button>
+            </a>
+            {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('projet_edit', { 'id': projet.id }) }}">
+                <button class="btn btn-info">Edit</button>
+            </a>
 
         </div>
         {{ form_start(delete_form) }}
         <input class="btn btn-danger" type="submit" value="Delete">
         {{ form_end(delete_form) }}
-
+        {% endif %}
     </div>
 {% endblock %}

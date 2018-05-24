@@ -19,7 +19,9 @@
                             <p>{% if projet.date %}{{ projet.date|date('Y-m-d H:i:s') }}{% endif %}</p>
                             {{ projet.description }}</div>
                         <a href="{{ path('projet_show', { 'id': projet.id }) }}">show</a>
+                        {% if  is_granted('ROLE_ADMIN')%}
                         <a href="{{ path('projet_edit', { 'id': projet.id }) }}">edit</a>
+                        {% endif %}
                         <a href="{{ path('faire_don', {'id': projet.id}) }}">Faire un don</a>
                     </div>
                 </div>

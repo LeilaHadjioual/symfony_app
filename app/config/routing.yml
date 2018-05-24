@@ -1,3 +1,8 @@
+user:
+    resource: "@UserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 inscription:
     resource: "@InscriptionBundle/Controller/"
     type:     annotation
