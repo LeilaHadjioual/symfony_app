@@ -29,10 +29,10 @@
             </tbody>
         </table>
         <div class="btn-group-vertical">
-            <button type="button" class="btn btn-info"><a href="{{ path('projet_index') }}">Back to the list</a>
-            </button>
-            <button type="button" class="btn btn-info"><a href="{{ path('projet_edit', { 'id': projet.id }) }}">Edit</a>
-            </button>
+            <a href="{{ path('projet_index') }}"><button type="submit" class="btn btn-info">Back to the list</button></a>
+
+          <a href="{{ path('projet_edit', { 'id': projet.id }) }}"><button class="btn btn-info">Edit</button></a>
+
         </div>
         {{ form_start(delete_form) }}
         <input class="btn btn-danger" type="submit" value="Delete">

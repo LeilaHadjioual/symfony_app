@@ -20,11 +20,12 @@
                             {{ projet.description }}</div>
                         <a href="{{ path('projet_show', { 'id': projet.id }) }}">show</a>
                         <a href="{{ path('projet_edit', { 'id': projet.id }) }}">edit</a>
+                        <a href="{{ path('faire_don', {'id': projet.id}) }}">Faire un don</a>
                     </div>
                 </div>
             </div>
         {% endfor %}
-        <button class="btn btn-info"><a href="{{ path('projet_new') }}">Create a new projet</a></button>
+        <a href="{{ path('projet_new') }}"><button class="btn btn-info">Create a new projet</button></a>
 
         {#<table class="table table-striped">#}
         {#<thead>#}
