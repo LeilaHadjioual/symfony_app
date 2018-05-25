@@ -20,7 +20,7 @@ class SecurityController extends Controller
 
         // Le service authentication_utils permet de récupérer le nom d'utilisateur
         // et l'erreur dans le cas où le formulaire a déjà été soumis mais était invalide
-        // (mauvais mot de passe par exemple
+        // (mauvais mot de passe par exemple)
         $authenticationUtils = $this->get('security.authentication_utils');
 
         return $this->render('@User/Security/login.html.twig', array(

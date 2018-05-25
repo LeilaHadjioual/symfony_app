@@ -3,12 +3,19 @@
 {% block body %}
     <div class="container">
         <h1>Projet creation</h1>
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input class="btn btn-primary" type="submit" value="Create"/>
-        {{ form_end(form) }}
-
-        <a href="{{ path('projet_index') }}"><button type="button" class="btn btn-info">Back to the list</button></a>
+        {% if  is_granted('ROLE_ADMIN') %}
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input class="btn btn-primary" type="submit" value="Create"/>
+            {{ form_end(form) }}
+            {% else %}
+                <p>Vous devez vous connecter pour créer un projet</p>
+        <a href="{{ path('projet_index') }}">
+            <button type="button" class="btn btn-info">Back to the list</button>
+        </a><a href="{{ path('login') }}">
+            <button type="button" class="btn btn-info">Se connecter</button>
+        </a>
+        {% endif %}
 
 
     </div>

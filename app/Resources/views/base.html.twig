@@ -16,13 +16,18 @@
             <a class="navbar-brand">WebSiteName</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="{{ asset('/')}}">Home</a></li>
-            <li><a href="{{ asset('projet')}}">Projets</a></li>
-            <li><a href="{{ asset('projet/new')}}">Créer un projet</a></li>
+            <li class="active"><a href="{{ asset('/') }}">Home</a></li>
+            <li><a href="{{ asset('projet') }}">Projets</a></li>
+            <li><a href="{{ asset('projet/new') }}">Créer un projet</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="{{ asset('inscription/new')}}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="{{ asset('/login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <li><a href="{{ asset('/logout') }}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+            {% else %}
+                <li><a href="{{ asset('/login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="{{ asset('inscription/new') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+                </li>
+            {% endif %}
         </ul>
     </div>
 </nav>
@@ -30,22 +35,22 @@
 {% block javascripts %}{% endblock %}
 
 <script>
-    $('#show_honor_fields').click(function(){
+    $('#show_honor_fields').click(function () {
         if (this.checked) {
             $('.honor-form').show();
             $('#donately_form').remove();
-        } else{
+        } else {
             $('.honor-form').hide();
             $('#donately_form_with_codes').remove();
             $("#honor_name").text('someone special');
-            $('.donation-container').append( '<div id="donately_form"><script  class="donately-donation-form" src="https://s3-us-west-1.amazonaws.com/static-dntly-com/form.js"  async="async" type="text/javascript" data-donately-ssl="true" data-donately-id="198" data-donately-address="true" data-donately-comment="true" data-donately-phone="true"/></div>' );
+            $('.donation-container').append('<div id="donately_form"><script  class="donately-donation-form" src="https://s3-us-west-1.amazonaws.com/static-dntly-com/form.js"  async="async" type="text/javascript" data-donately-ssl="true" data-donately-id="198" data-donately-address="true" data-donately-comment="true" data-donately-phone="true"/></div>');
         }
     });
 
 
     //PLEDGE FORM ON /DONATE/PLEDGE
     //We have to load form.js after submit so we can untilize the tracking codes feature
-    $('#updateform').click(function(){
+    $('#updateform').click(function () {
 
         $('.honor-form').hide();
         // $('#show_honor_fields').attr('disabled', 'disabled');
@@ -64,7 +69,7 @@
 
         $('#donately_form').remove();
 
-        $(".donation-container").append( '<div id="donately_form_with_codes"><script class="donately-donation-form" src="https://s3-us-west-1.amazonaws.com/static-dntly-com/form.js"  async="async" type="text/javascript" data-donately-ssl="true" data-donately-tracking-codes="' + codes + '" data-donately-id="198" data-donately-address="true" data-donately-comment="true" data-donately-phone="true"/></div>' );
+        $(".donation-container").append('<div id="donately_form_with_codes"><script class="donately-donation-form" src="https://s3-us-west-1.amazonaws.com/static-dntly-com/form.js"  async="async" type="text/javascript" data-donately-ssl="true" data-donately-tracking-codes="' + codes + '" data-donately-id="198" data-donately-address="true" data-donately-comment="true" data-donately-phone="true"/></div>');
 
         return false;
     });
